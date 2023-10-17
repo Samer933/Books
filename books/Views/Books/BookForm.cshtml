@@ -1,0 +1,58 @@
+﻿
+@model books.ViewModels.BookFormViewModel
+
+
+<h2> @(Model.Id == 0 ? "Add New Book": "Edit" )</h2>
+
+@using(Html.BeginForm("Save","Books")) { 
+    
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.Id)
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.Title)
+        @Html.TextBoxFor(m => m.Title , new {@class="form-control"})
+        @Html.ValidationMessageFor(m => m.Title, null, new {@class="text-danger"})
+    </div>
+    
+    <div class="form-group">
+        
+        @Html.LabelFor(m => m.Author)
+        @Html.TextBoxFor(m => m.Author  , new {@class="form-control"})
+        @Html.ValidationMessageFor(m => m.Author, null ,new {@class="text-danger"})
+
+    </div>
+
+    <div class="form-group">
+        
+        @Html.LabelFor(m => m.CategoryId)
+        @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.Categories, "Id" , "Name" ), "" , new {@class="form-control"})
+        @Html.ValidationMessageFor(m => m.CategoryId, null ,new {@class="text-danger"})
+
+
+    </div>
+
+
+    <div class="form-group">
+        
+        @Html.LabelFor(m => m.Description)
+        @Html.TextAreaFor(m => m.Description, new {@class="form-control"})
+        @Html.ValidationMessageFor(m => m.Description, null ,new {@class="text-danger"})
+
+
+    </div>
+
+    <input value="Send" type="submit" class="btn btn-primary"/>
+
+
+
+
+
+}
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

@@ -1,0 +1,42 @@
+﻿@model books.Models.Books
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+
+
+
+
+
+
+@if (Model != null)
+{
+
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>AddOn</th>
+        </tr>
+
+
+        <tr>
+
+            <td>@Model.Title</td>
+            <td>@Model.Author</td>
+            <td>@Model.Category.Name</td>
+            <td>@Model.Description</td>
+            <td>@Model.AddOn</td>
+        </tr>
+
+
+    </table>
+
+    @Html.ActionLink("Edit", "Edit","Books", new {id=@Model.Id},null)
+
+}
